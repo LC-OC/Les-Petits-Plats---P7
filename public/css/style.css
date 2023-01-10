@@ -1,0 +1,191 @@
+*:focus {
+  box-shadow: none !important;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+#logo-section {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+}
+#logo-section #logo-icon {
+  height: 93px;
+  width: 268px;
+}
+
+#dropdown-section .btn-danger {
+  background-color: #ED6454;
+  width: 170px;
+  height: 69px;
+  border: none;
+  font-size: 18px;
+}
+#dropdown-section .btn-danger:focus {
+  background-color: #ED6454;
+}
+#dropdown-section .btn-danger:hover {
+  background-color: #ED6454;
+}
+#dropdown-section .btn-primary {
+  background-color: #3282F7;
+  width: 170px;
+  height: 69px;
+  border: none;
+  font-size: 18px;
+}
+#dropdown-section .btn-primary:focus {
+  background-color: #3282F7;
+}
+#dropdown-section .btn-primary:hover {
+  background-color: #3282F7;
+}
+#dropdown-section .btn-success {
+  background-color: #68D9A4;
+  width: 170px;
+  height: 69px;
+  font-size: 18px;
+  border: none;
+}
+#dropdown-section .btn-success:focus {
+  background-color: #68D9A4;
+  outline: none;
+}
+#dropdown-section .btn-success:hover {
+  background-color: #68D9A4;
+}
+#dropdown-section .dropdown-ingredients {
+  background-color: #3282F7;
+  color: white;
+}
+#dropdown-section .dropdown-ingredients #searchbar_ingredients {
+  border: none;
+  background-color: #3282F7;
+  color: white;
+  font-size: 18px;
+  margin: 1rem 0;
+  margin-left: -1rem;
+}
+#dropdown-section .dropdown-appliances {
+  background-color: #68D9A4;
+  color: white;
+}
+#dropdown-section .dropdown-appliances #searchbar_appliances {
+  border: none;
+  background-color: #68D9A4;
+  color: white;
+  font-size: 18px;
+  margin: 1rem 0;
+  margin-left: -1rem;
+}
+#dropdown-section .dropdown-ustensils {
+  background-color: #ED6454;
+  color: white;
+}
+#dropdown-section .dropdown-ustensils #searchbar_ustensils {
+  border: none;
+  background-color: #ED6454;
+  color: white;
+  font-size: 18px;
+  margin: 1rem 0;
+  margin-left: -1rem;
+}
+#dropdown-section .dropdown-list {
+  width: 40rem;
+  font-size: 18px;
+  column-count: 3;
+  list-style-type: none;
+}
+#dropdown-section .dropdown-list li {
+  margin-bottom: 0.5rem;
+}
+#dropdown-section ::placeholder {
+  font-size: 18px;
+  color: #FFFFFF;
+  opacity: 0.5;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+form {
+  margin: 0 2.3rem;
+}
+form #search-content {
+  background-image: url("/src/assets/search-icon.png");
+  background-repeat: no-repeat;
+  background-position: center right 1%;
+  padding: 0.9rem;
+  background-size: 1.9rem;
+  background-origin: padding-box;
+  background-color: #E7E7E7;
+  border-radius: 5px;
+  height: 69px;
+  font-size: 18px;
+  border: none;
+}
+
+#recipes-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 95%;
+}
+#recipes-section .card {
+  width: 380px;
+  height: 364px;
+  background: #E7E7E7;
+  border-radius: 5px;
+  margin-bottom: 3rem;
+}
+#recipes-section .card .card-img-top {
+  height: 45%;
+  background-color: #C7BEBE;
+  width: 100%;
+}
+#recipes-section .card .card-body {
+  height: 50%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+#recipes-section .card .card-body .style_title_time {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+#recipes-section .card .card-body .style_title_time #search_title {
+  font-size: 18px;
+  font-weight: 400;
+  width: 70%;
+}
+#recipes-section .card .card-body .style_title_time .time_recipes {
+  font-size: 18px;
+  font-weight: 700;
+}
+#recipes-section .card .card-body .style_description_ingredients {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 6rem;
+  overflow: hidden;
+}
+#recipes-section .card .card-body .style_description_ingredients .ingredients_recipes {
+  font-size: 12px;
+  margin-bottom: -3px;
+  width: 8rem;
+}
+#recipes-section .card .card-body .style_description_ingredients .ingredients_recipes .ingredient_bold {
+  font-weight: 700;
+}
+#recipes-section .card .card-body .style_description_ingredients .description_style {
+  font-size: 12px;
+  width: 60%;
+  text-align: justify;
+}
+
+/*# sourceMappingURL=style.css.map */

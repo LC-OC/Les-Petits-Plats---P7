@@ -1,0 +1,97 @@
+#dropdown-section {
+    .btn-danger {
+    background-color: $ustensils-color;
+    width: 170px;
+    height: 69px;
+    border: none;
+    font-size: 18px;
+    &:focus {
+        background-color: $ustensils-color;
+    }
+    &:hover {
+        background-color: $ustensils-color;
+    }
+}
+    .btn-primary {
+        background-color: $ingredients-color;
+        width: 170px;
+        height: 69px;
+        border: none;
+        font-size: 18px;
+        &:focus {
+            background-color: $ingredients-color;
+        }
+        &:hover {
+            background-color: $ingredients-color;
+        }
+    
+    }
+    .btn-success  {
+        background-color: $appliances-color;
+        width: 170px;
+        height: 69px;
+        font-size: 18px;
+        border: none;
+        &:focus {
+            background-color: $appliances-color;
+            outline: none;
+        }
+        &:hover {
+            background-color: $appliances-color;
+        }
+    }
+    .dropdown-ingredients  {
+        background-color: $ingredients-color;
+        color: white; 
+        #searchbar_ingredients {
+            border: none;
+            background-color: $ingredients-color;
+            color: white;
+            font-size: 18px;
+            margin: 1rem 0;
+            margin-left: -1rem;
+        }   
+    }
+    .dropdown-appliances {
+        background-color: $appliances-color;
+        color: white;
+        #searchbar_appliances {
+            border: none;
+            background-color: $appliances-color;
+            color: white;
+            font-size: 18px;
+            margin: 1rem 0;
+            margin-left: -1rem;
+        }
+    }
+    .dropdown-ustensils {
+        background-color: $ustensils-color;
+        color: white;
+        #searchbar_ustensils {
+            border: none;
+            background-color: $ustensils-color;
+            color: white;
+            font-size: 18px;
+            margin: 1rem 0;
+            margin-left: -1rem;
+        }
+    }
+    .dropdown-list {
+        width: 40rem;
+        font-size: 18px;
+        column-count: 3;
+        list-style-type: none;
+        li {
+            margin-bottom: 0.5rem;
+        }
+    }
+    ::placeholder {
+        font-size: 18px;
+        color: #FFFFFF;
+        opacity: 0.5;
+        
+    }
+}
+.dropdown-toggle::after {
+    display: none;
+  }
