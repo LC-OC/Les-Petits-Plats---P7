@@ -1,0 +1,22 @@
+#tag-section {
+    margin: 0 2.3rem;
+    .badge {
+        padding: 0.7rem;
+        font-size: 14px;
+        margin: 1.3rem 1rem 0.2rem 0;
+    }
+    .tag-ingredient {
+        background-color: $ingredients-color;
+    }
+    .tag-appliance {
+        background-color: $appliances-color;
+    }
+    .tag-ustensil {
+        background-color: $ustensils-color;
+    }
+    .close-icon {
+        height: 20px;
+        margin-left: 0.5rem;
+        margin-top: -0.2rem;
+    }
+}

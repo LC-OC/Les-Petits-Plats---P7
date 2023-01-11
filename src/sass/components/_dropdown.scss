@@ -91,6 +91,31 @@
         opacity: 0.5;
         
     }
+    // error search dropdown
+    #error_ingredient {
+        display: none;
+        color: white;
+        font-size: 18px;
+        padding: 1rem;
+        text-transform: none;
+        margin-left: 1rem;
+    }
+    #error_appliances {
+        display: none;
+        color: white;
+        font-size: 18px;
+        padding: 1rem;
+        text-transform: none;
+        margin-left: 1rem;
+    }
+    #error_ustensils {
+        display: none;
+        color: white;
+        font-size: 18px;
+        padding: 1rem;
+        text-transform: none;
+        margin-left: 1rem;
+    }
 }
 .dropdown-toggle::after {
     display: none;

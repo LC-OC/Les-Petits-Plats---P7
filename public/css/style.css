@@ -106,6 +106,30 @@ body {
   color: #FFFFFF;
   opacity: 0.5;
 }
+#dropdown-section #error_ingredient {
+  display: none;
+  color: white;
+  font-size: 18px;
+  padding: 1rem;
+  text-transform: none;
+  margin-left: 1rem;
+}
+#dropdown-section #error_appliances {
+  display: none;
+  color: white;
+  font-size: 18px;
+  padding: 1rem;
+  text-transform: none;
+  margin-left: 1rem;
+}
+#dropdown-section #error_ustensils {
+  display: none;
+  color: white;
+  font-size: 18px;
+  padding: 1rem;
+  text-transform: none;
+  margin-left: 1rem;
+}
 
 .dropdown-toggle::after {
   display: none;
@@ -186,6 +210,29 @@ form #search-content {
   font-size: 12px;
   width: 60%;
   text-align: justify;
+}
+
+#tag-section {
+  margin: 0 2.3rem;
+}
+#tag-section .badge {
+  padding: 0.7rem;
+  font-size: 14px;
+  margin: 1.3rem 1rem 0.2rem 0;
+}
+#tag-section .tag-ingredient {
+  background-color: #3282F7;
+}
+#tag-section .tag-appliance {
+  background-color: #68D9A4;
+}
+#tag-section .tag-ustensil {
+  background-color: #ED6454;
+}
+#tag-section .close-icon {
+  height: 20px;
+  margin-left: 0.5rem;
+  margin-top: -0.2rem;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -29,6 +29,7 @@
               </div>
         </div>
         <!--Dropdown & tags-->
+        <div id="tag-section" class="container-fluid"></div>
         <div id="dropdown-section" class="d-flex flex-row mb-3 gap-3 ms-5 mt-3">
             <div class="dropdown" id="dropdown-ingredients container">
              <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,6 +39,7 @@
                   <form class="form-inline">
                     <input class="form-control mr-sm-2" id="searchbar_ingredients" type="search" placeholder="Rechercher un ingrédient" aria-label="Search">
                   </form>
+                  <p id="error_ingredient">Aucun ingrédient ne correspond à votre recherche.</p>
                 <ul class="dropdown-list ingredients-list">
                 </ul>
              </div>
@@ -50,6 +52,7 @@
                     <form class="form-inline">
                       <input class="form-control mr-sm-2" id="searchbar_appliances" type="search" placeholder="Rechercher un appareil" aria-label="Search">
                     </form>
+                    <p id="error_appliances">Aucun appareil ne correspond à votre recherche.</p>
                     <ul class="dropdown-list appliances-list">
                     </ul>
                  </div>
@@ -62,6 +65,7 @@
                   <form class="form-inline">
                     <input class="form-control mr-sm-2" id="searchbar_ustensils" type="search" placeholder="Rechercher un ustensil" aria-label="Search">
                   </form>
+                  <p id="error_ustensils">Aucun ustensile ne correspond à votre recherche.</p>
                   <ul class="dropdown-list ustensils-list">
                   </ul>
                 </div>

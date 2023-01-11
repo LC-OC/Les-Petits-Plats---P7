@@ -26,6 +26,7 @@ export function recipesFactory(data) {
     let divIngredients = document.createElement("div");
 
     // add id and class
+    cardsCols.classList.add("cards");
     cardsRecipes.classList.add("card");
     cardsRecipes.classList.add("border-0");
     imgCardsRecipes.classList.add("card-img-top");
