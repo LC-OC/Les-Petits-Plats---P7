@@ -1,23 +1,23 @@
 import { recipes } from "../data/recipes.js";
+import {
+  dropdownIngredients,
+  dropdownAppliances,
+  dropdownUstensils,
+  searchBarIngredients,
+  searchBarAppliances,
+  searchBarUstensils,
+  errorIngredients,
+  errorUstensils,
+  errorAppliances,
+  errorRecipes,
+  tagSection,
+  recipesContainer,
+} from "./DOM.js";
 
-// DOM
-let dropdownIngredients = document.querySelector(".ingredients-list");
-let dropdownAppliances = document.querySelector(".appliances-list");
-let dropdownUstensils = document.querySelector(".ustensils-list");
-let searchBarIngredients = document.querySelector("#searchbar_ingredients");
-let searchBarAppliances = document.querySelector("#searchbar_appliances");
-let searchBarUstensils = document.querySelector("#searchbar_ustensils");
-const errorIngredients = document.getElementById("error_ingredient");
-const errorAppliances = document.getElementById("error_appliances");
-const errorUstensils = document.getElementById("error_ustensils");
-let tagSection = document.querySelector("#tag-section");
-
-let arrayRecipes = [];
-let recipesContainer = document.getElementsByClassName("cards");
+export let arrayRecipes = [];
 for (let recipes of recipesContainer) {
   arrayRecipes.push(recipes);
 }
-console.log(arrayRecipes);
 
 // array
 let arrayIngredients = [];
@@ -27,6 +27,7 @@ let arrayListingIngredients = [];
 let arrayListingAppliances = [];
 let arrayListingUstensils = [];
 let arrayTag = [];
+let arrayTextTag = [];
 
 // récupération des éléments des listings
 recipes.map((recipe) => {
@@ -164,6 +165,7 @@ arrayListingIngredients.forEach((listIngredient) => {
     badgeIngredient.appendChild(badgeCloseIcon);
     tagSection.appendChild(badgeIngredient);
     arrayTag.push(badgeIngredient);
+    removeDuplicatesTags();
     searchTag();
     tagRemove();
   });
@@ -182,6 +184,7 @@ arrayListingAppliances.forEach((listAppliance) => {
     badgeAppliance.appendChild(badgeCloseIcon);
     tagSection.appendChild(badgeAppliance);
     arrayTag.push(badgeAppliance);
+    removeDuplicatesTags();
     searchTag();
     tagRemove();
   });
@@ -200,6 +203,7 @@ arrayListingUstensils.forEach((listUstensil) => {
     badgeUstensil.appendChild(badgeCloseIcon);
     tagSection.appendChild(badgeUstensil);
     arrayTag.push(badgeUstensil);
+    removeDuplicatesTags();
     searchTag();
     tagRemove();
   });
@@ -210,27 +214,42 @@ function tagRemove() {
   arrayTag.forEach((tag) => {
     tag.addEventListener("click", function () {
       tag.remove();
-      console.log(tag.textContent);
     });
   });
 }
 
-let arrayTextTag = [];
 function searchTag() {
+  let matchFound = false;
   arrayRecipes.map((recipe) => {
     arrayTag.map((tag) => {
       arrayTextTag.push(tag.textContent.toLowerCase());
-      let isEvery = arrayTextTag.every((item) =>
+      let foundTag = arrayTextTag.every((item) =>
         recipe.textContent.toLowerCase().includes(item)
       );
-      if (isEvery == true) {
+
+      if (foundTag == true) {
         console.log(recipe.textContent);
         recipe.style.display = "block";
+        matchFound = true;
       } else {
         recipe.style.display = "none";
       }
-      console.log(isEvery);
-      console.log(tag.textContent);
+      if (!matchFound) {
+        errorRecipes.style.display = "block";
+      } else {
+        errorRecipes.style.display = "none";
+      }
     });
+  });
+}
+function removeDuplicatesTags() {
+  const getTags = [...document.querySelectorAll(".badge")];
+  const contentTag = new Set(getTags.map((x) => x.innerHTML));
+  getTags.forEach((tag) => {
+    if (contentTag.has(tag.innerHTML)) {
+      contentTag.delete(tag.innerHTML);
+    } else {
+      tag.remove();
+    }
   });
 }
