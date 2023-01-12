@@ -1,4 +1,5 @@
 import { recipes } from "../data/recipes.js";
+import { displayRecipes } from "./index.js";
 import {
   dropdownIngredients,
   dropdownAppliances,
@@ -151,7 +152,7 @@ searchBarUstensils.addEventListener("keyup", (e) => {
 });
 
 // Create Tag
-arrayListingIngredients.forEach((listIngredient) => {
+arrayListingIngredients.filter((listIngredient) => {
   listIngredient.addEventListener("click", function (e) {
     let ingredient = e.target.textContent;
     let badgeIngredient = document.createElement("span");
@@ -170,7 +171,7 @@ arrayListingIngredients.forEach((listIngredient) => {
     tagRemove();
   });
 });
-arrayListingAppliances.forEach((listAppliance) => {
+arrayListingAppliances.filter((listAppliance) => {
   listAppliance.addEventListener("click", function (e) {
     let appliance = e.target.textContent;
     let badgeAppliance = document.createElement("span");
@@ -189,7 +190,7 @@ arrayListingAppliances.forEach((listAppliance) => {
     tagRemove();
   });
 });
-arrayListingUstensils.forEach((listUstensil) => {
+arrayListingUstensils.filter((listUstensil) => {
   listUstensil.addEventListener("click", function (e) {
     let ustensil = e.target.textContent;
     let badgeUstensil = document.createElement("span");
@@ -211,22 +212,33 @@ arrayListingUstensils.forEach((listUstensil) => {
 
 // Delete Tag
 function tagRemove() {
-  arrayTag.forEach((tag) => {
+  arrayTag.filter((tag) => {
     tag.addEventListener("click", function () {
       tag.remove();
+      console.log(tag.textContent);
+      arrayTag = arrayTag.filter(function (tags) {
+        return tags.textContent !== tag.textContent;
+      });
+      arrayRecipes.filter((recipe) => {
+        if (arrayTag.length === 0) {
+          recipe.style.display = "block";
+          arrayTag = [];
+          console.log(arrayTag);
+        }
+      });
+      console.log(arrayTag);
     });
   });
 }
 
 function searchTag() {
   let matchFound = false;
-  arrayRecipes.map((recipe) => {
-    arrayTag.map((tag) => {
+  arrayRecipes.filter((recipe) => {
+    arrayTag.filter((tag) => {
       arrayTextTag.push(tag.textContent.toLowerCase());
       let foundTag = arrayTextTag.every((item) =>
         recipe.textContent.toLowerCase().includes(item)
       );
-
       if (foundTag == true) {
         console.log(recipe.textContent);
         recipe.style.display = "block";

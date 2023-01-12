@@ -6,7 +6,7 @@ searchBar.addEventListener("keyup", (e) => {
   let matchFound = false;
   let searchValueLength = searchValue.length;
   // array method
-  arrayRecipes.forEach((recipes) => {
+  arrayRecipes.filter((recipes) => {
     if (
       searchValueLength >= 3 &&
       !recipes.textContent.toLowerCase().includes(searchValue)
