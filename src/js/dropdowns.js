@@ -1,5 +1,5 @@
 import { recipes } from "../data/recipes.js";
-import { displayRecipes } from "./index.js";
+import { displayRecipes, recipesSection } from "./index.js";
 import {
   dropdownIngredients,
   dropdownAppliances,
@@ -13,6 +13,7 @@ import {
   errorRecipes,
   tagSection,
   recipesContainer,
+  searchBar,
 } from "./DOM.js";
 
 export let arrayRecipes = [];
@@ -166,6 +167,7 @@ arrayListingIngredients.filter((listIngredient) => {
     badgeIngredient.appendChild(badgeCloseIcon);
     tagSection.appendChild(badgeIngredient);
     arrayTag.push(badgeIngredient);
+    console.log(arrayTag);
     removeDuplicatesTags();
     searchTag();
     tagRemove();
@@ -185,6 +187,7 @@ arrayListingAppliances.filter((listAppliance) => {
     badgeAppliance.appendChild(badgeCloseIcon);
     tagSection.appendChild(badgeAppliance);
     arrayTag.push(badgeAppliance);
+    console.log(arrayTag);
     removeDuplicatesTags();
     searchTag();
     tagRemove();
@@ -204,6 +207,7 @@ arrayListingUstensils.filter((listUstensil) => {
     badgeUstensil.appendChild(badgeCloseIcon);
     tagSection.appendChild(badgeUstensil);
     arrayTag.push(badgeUstensil);
+    console.log(arrayTag);
     removeDuplicatesTags();
     searchTag();
     tagRemove();
@@ -220,25 +224,27 @@ function tagRemove() {
         return tags.textContent !== tag.textContent;
       });
       arrayRecipes.filter((recipe) => {
-        if (arrayTag.length === 0) {
+        if (arrayTag.length === 0 && searchBar.value.length === 0) {
           recipe.style.display = "block";
+          errorRecipes.style.display = "none";
           arrayTag = [];
-          console.log(arrayTag);
         }
       });
       console.log(arrayTag);
     });
   });
 }
-
 function searchTag() {
   let matchFound = false;
   arrayRecipes.filter((recipe) => {
     arrayTag.filter((tag) => {
       arrayTextTag.push(tag.textContent.toLowerCase());
-      let foundTag = arrayTextTag.every((item) =>
-        recipe.textContent.toLowerCase().includes(item)
+      let foundTag = arrayTextTag.every(
+        (item) =>
+          recipe.textContent.toLowerCase().includes(item) &&
+          recipe.textContent.toLowerCase().includes(searchBar.value)
       );
+      console.log(foundTag);
       if (foundTag == true) {
         console.log(recipe.textContent);
         recipe.style.display = "block";
@@ -246,6 +252,7 @@ function searchTag() {
       } else {
         recipe.style.display = "none";
       }
+
       if (!matchFound) {
         errorRecipes.style.display = "block";
       } else {

@@ -1,5 +1,6 @@
 import { searchBar, recipesContainer, errorRecipes } from "./DOM.js";
 import { arrayRecipes } from "./dropdowns.js";
+
 searchBar.addEventListener("keyup", (e) => {
   let searchValue = e.target.value;
   searchValue = searchValue.toLowerCase();
