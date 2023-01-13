@@ -225,11 +225,21 @@ function tagRemove() {
       });
       arrayRecipes.filter((recipe) => {
         if (arrayTag.length === 0 && searchBar.value.length === 0) {
+          location.reload();
+        }
+        if (
+          arrayTag.length === 0 &&
+          searchBar.value.length > 0 &&
+          recipe.textContent
+            .toLowerCase()
+            .includes(searchBar.value.toLowerCase())
+        ) {
           recipe.style.display = "block";
           errorRecipes.style.display = "none";
-          arrayTag = [];
+          console.log("ouiiii");
         }
       });
+
       console.log(arrayTag);
     });
   });
@@ -252,7 +262,10 @@ function searchTag() {
       } else {
         recipe.style.display = "none";
       }
-
+      if (foundTag == true && searchBar.value.length === 0) {
+        console.log("oui");
+        searchBar.disabled = true;
+      }
       if (!matchFound) {
         errorRecipes.style.display = "block";
       } else {
