@@ -20,6 +20,7 @@ export let arrayRecipes = [];
 for (let recipes of recipesContainer) {
   arrayRecipes.push(recipes);
 }
+import { searchPrincipal } from "./searchBar.js";
 
 // array
 let arrayIngredients = [];
@@ -30,6 +31,11 @@ let arrayListingAppliances = [];
 let arrayListingUstensils = [];
 let arrayTag = [];
 let arrayTextTag = [];
+let arrayFilterAppliance = [];
+let arrayFilterUstensils = [];
+let arrayFilterIngredients = [];
+
+let listIngredients = document.getElementsByClassName("ingredient");
 
 // récupération des éléments des listings
 recipes.map((recipe) => {
@@ -167,7 +173,6 @@ arrayListingIngredients.filter((listIngredient) => {
     badgeIngredient.appendChild(badgeCloseIcon);
     tagSection.appendChild(badgeIngredient);
     arrayTag.push(badgeIngredient);
-    console.log(arrayTag);
     removeDuplicatesTags();
     searchTag();
     tagRemove();
@@ -187,7 +192,6 @@ arrayListingAppliances.filter((listAppliance) => {
     badgeAppliance.appendChild(badgeCloseIcon);
     tagSection.appendChild(badgeAppliance);
     arrayTag.push(badgeAppliance);
-    console.log(arrayTag);
     removeDuplicatesTags();
     searchTag();
     tagRemove();
@@ -207,43 +211,69 @@ arrayListingUstensils.filter((listUstensil) => {
     badgeUstensil.appendChild(badgeCloseIcon);
     tagSection.appendChild(badgeUstensil);
     arrayTag.push(badgeUstensil);
-    console.log(arrayTag);
     removeDuplicatesTags();
     searchTag();
     tagRemove();
   });
 });
 
+let tagDelete = [];
 // Delete Tag
 function tagRemove() {
   arrayTag.filter((tag) => {
     tag.addEventListener("click", function () {
       tag.remove();
-      console.log(tag.textContent);
       arrayTag = arrayTag.filter(function (tags) {
         return tags.textContent !== tag.textContent;
       });
+      tagDelete = arrayTag;
+      filterRemoveTag(tag);
       arrayRecipes.filter((recipe) => {
         if (arrayTag.length === 0 && searchBar.value.length === 0) {
-          location.reload();
+          arrayTag = [];
+          arrayTextTag = [];
+          searchBar.disabled = false;
         }
         if (
           arrayTag.length === 0 &&
-          searchBar.value.length > 0 &&
           recipe.textContent
             .toLowerCase()
             .includes(searchBar.value.toLowerCase())
         ) {
-          recipe.style.display = "block";
-          errorRecipes.style.display = "none";
-          console.log("ouiiii");
+          searchPrincipal();
+          searchBar.disabled = false;
         }
       });
-
-      console.log(arrayTag);
     });
   });
 }
+function filterRemoveTag(tag) {
+  let matchFound = false;
+  arrayTextTag = arrayTextTag.filter(function (tagsText) {
+    return tagsText.toLowerCase() !== tag.textContent.toLowerCase();
+  });
+  arrayRecipes.filter((recipe) => {
+    let foundTag = arrayTextTag.every(
+      (item) =>
+        recipe.textContent.toLowerCase().includes(item) &&
+        recipe.textContent.toLowerCase().includes(searchBar.value)
+    );
+    if (foundTag == true) {
+      recipe.style.display = "block";
+    } else {
+      recipe.style.display = "none";
+      matchFound = true;
+    }
+    if (foundTag == true && searchBar.value.length === 0) {
+      searchBar.disabled = true;
+    }
+    if (!matchFound) {
+      errorRecipes.style.display = "block";
+    }
+  });
+}
+
+// Search recipes with tags
 function searchTag() {
   let matchFound = false;
   arrayRecipes.filter((recipe) => {
@@ -254,16 +284,16 @@ function searchTag() {
           recipe.textContent.toLowerCase().includes(item) &&
           recipe.textContent.toLowerCase().includes(searchBar.value)
       );
-      console.log(foundTag);
       if (foundTag == true) {
-        console.log(recipe.textContent);
         recipe.style.display = "block";
         matchFound = true;
       } else {
         recipe.style.display = "none";
       }
       if (foundTag == true && searchBar.value.length === 0) {
-        console.log("oui");
+        searchBar.disabled = true;
+      }
+      if (arrayTag.length > 0 && searchBar.value.length > 0) {
         searchBar.disabled = true;
       }
       if (!matchFound) {
@@ -274,6 +304,7 @@ function searchTag() {
     });
   });
 }
+
 function removeDuplicatesTags() {
   const getTags = [...document.querySelectorAll(".badge")];
   const contentTag = new Set(getTags.map((x) => x.innerHTML));
