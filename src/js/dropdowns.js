@@ -161,18 +161,8 @@ searchBarUstensils.addEventListener("keyup", (e) => {
 // Create Tag
 arrayListingIngredients.filter((listIngredient) => {
   listIngredient.addEventListener("click", function (e) {
-    let ingredient = e.target.textContent;
-    let badgeIngredient = document.createElement("span");
-    badgeIngredient.innerHTML = ingredient;
-    badgeIngredient.classList.add("badge");
-    badgeIngredient.classList.add("tag-ingredient");
-    badgeIngredient.style.display = "inline-block";
-    let badgeCloseIcon = document.createElement("img");
-    badgeCloseIcon.src = "../src/assets/close-icon.png";
-    badgeCloseIcon.classList.add("close-icon");
-    badgeIngredient.appendChild(badgeCloseIcon);
-    tagSection.appendChild(badgeIngredient);
-    arrayTag.push(badgeIngredient);
+    triListing(listIngredient);
+    createTag(e);
     removeDuplicatesTags();
     searchTag();
     tagRemove();
@@ -315,4 +305,58 @@ function removeDuplicatesTags() {
       tag.remove();
     }
   });
+}
+function createTag(e) {
+  let ingredient = e.target.textContent;
+  let badgeIngredient = document.createElement("span");
+  badgeIngredient.innerHTML = ingredient;
+  badgeIngredient.classList.add("badge");
+  badgeIngredient.classList.add("tag-ingredient");
+  badgeIngredient.style.display = "inline-block";
+  let badgeCloseIcon = document.createElement("img");
+  badgeCloseIcon.src = "../src/assets/close-icon.png";
+  badgeCloseIcon.classList.add("close-icon");
+  badgeIngredient.appendChild(badgeCloseIcon);
+  tagSection.appendChild(badgeIngredient);
+  arrayTag.push(badgeIngredient);
+}
+let ingredientsInRecipes = document.getElementsByClassName("ingredient_bold");
+console.log(ingredientsInRecipes.innerHTML);
+
+let ingredientListingUl = document.getElementById("ingredients-list");
+
+function triListing(listIngredient) {
+  arrayRecipes.filter((recipe) => {
+    for (let i = 0; i < ingredientsInRecipes.length; i++) {
+      if (
+        recipe.textContent
+          .toLowerCase()
+          .includes(ingredientsInRecipes[i].innerHTML.toLocaleLowerCase()) &&
+        recipe.textContent
+          .toLowerCase()
+          .includes(listIngredient.textContent.toLowerCase())
+      ) {
+        arrayFilterIngredients.push(ingredientsInRecipes[i].innerHTML);
+      }
+    }
+  });
+  let arrayNoDoublonIngredient = new Set(arrayFilterIngredients);
+  console.log(arrayNoDoublonIngredient);
+  ingredientListingUl.innerHTML = "";
+  console.log(ingredientListingUl);
+  for (let newIngredient of arrayNoDoublonIngredient) {
+    const newListIngredient = document.createElement("li");
+    newListIngredient.textContent = newIngredient;
+    ingredientListingUl.appendChild(newListIngredient);
+    newListIngredient.addEventListener("click", function (e) {
+      console.log("???");
+      arrayNoDoublonIngredient = [];
+      console.log(arrayNoDoublonIngredient);
+      triListing(listIngredient);
+      createTag(e);
+      removeDuplicatesTags(e);
+      searchTag(e);
+      tagRemove(e);
+    });
+  }
 }
