@@ -33,10 +33,6 @@ let arrayTag = [];
 let arrayTextTag = [];
 export let listing = [];
 
-let ingredientsInRecipes = document.getElementsByClassName("ingredient_bold");
-console.log(ingredientsInRecipes.innerHTML);
-let listIngredients = document.getElementsByClassName("ingredient");
-
 // récupération des éléments des listings
 recipes.map((recipe) => {
   arrayAppliances.push(recipe.appliance);
@@ -223,24 +219,35 @@ function tagRemove() {
       });
       tagDelete = arrayTag;
       filterRemoveTag(tag);
+      if (arrayTag.length === 0 && searchBar.value.length === 0) {
+        arrayTag = [];
+        arrayTextTag = [];
+        searchBar.disabled = false;
+      }
       arrayRecipes.filter((recipe) => {
-        if (arrayTag.length === 0 && searchBar.value.length === 0) {
-          arrayTag = [];
-          arrayTextTag = [];
-          searchBar.disabled = false;
-          listing.filter((list) => {
-            list.style.display = "block";
-          });
-        }
         if (
           arrayTag.length === 0 &&
-          recipe.textContent
-            .toLowerCase()
-            .includes(searchBar.value.toLowerCase())
+          recipe.textContent.toLowerCase().includes(searchBar.value)
         ) {
           searchPrincipal();
           searchBar.disabled = false;
         }
+      });
+      listing.filter((list) => {
+        list.style.display = "none";
+        arrayRecipes.filter((recipe) => {
+          if (
+            arrayTag.length === 0 &&
+            recipe.textContent
+              .toLowerCase()
+              .includes(searchBar.value.toLowerCase()) &&
+            recipe.textContent
+              .toLowerCase()
+              .includes(list.textContent.toLowerCase())
+          ) {
+            list.style.display = "block";
+          }
+        });
       });
     });
   });
@@ -264,28 +271,24 @@ function filterRemoveTag(tag) {
       matchFound = true;
     }
     listing.filter((list) => {
-      arrayTag.filter((tag) => {
-        let foundTagListing = arrayTag.every(
-          (item) =>
-            recipe.textContent
-              .toLowerCase()
-              .includes(item.textContent.toLowerCase()) &&
-            recipe.textContent
-              .toLowerCase()
-              .includes(list.textContent.toLowerCase()) &&
-            recipe.textContent.toLowerCase().includes(searchBar.value)
-        );
-        if (foundTagListing == true) {
-          list.style.display = "block";
-        }
-        if (arrayTag.length === 0 && searchBar.value.length > 3) {
-          listingInput();
-        }
-      });
+      let foundTagListing = arrayTag.every(
+        (item) =>
+          recipe.textContent
+            .toLowerCase()
+            .includes(item.textContent.toLowerCase()) &&
+          recipe.textContent
+            .toLowerCase()
+            .includes(list.textContent.toLowerCase()) &&
+          recipe.textContent.toLowerCase().includes(searchBar.value)
+      );
+      if (foundTagListing == true) {
+        list.style.display = "block";
+      }
     });
     if (foundTag == true && searchBar.value.length === 0) {
       searchBar.disabled = true;
     }
+
     if (!matchFound) {
       errorRecipes.style.display = "block";
     } else {
@@ -303,7 +306,9 @@ function searchTag(e) {
       let foundTag = arrayTextTag.every(
         (item) =>
           recipe.textContent.toLowerCase().includes(item) &&
-          recipe.textContent.toLowerCase().includes(searchBar.value)
+          recipe.textContent
+            .toLowerCase()
+            .includes(searchBar.value.toLowerCase())
       );
       if (foundTag == true) {
         recipe.style.display = "block";
@@ -317,28 +322,14 @@ function searchTag(e) {
       if (arrayTag.length > 0 && searchBar.value.length > 0) {
         searchBar.disabled = true;
       }
-
       if (!matchFound) {
         errorRecipes.style.display = "block";
-        dropdownIngredients.style.display = "none";
-        errorIngredients.style.display = "block";
-        dropdownAppliances.style.display = "none";
-        errorAppliances.style.display = "block";
-        dropdownUstensils.style.display = "none";
-        errorUstensils.style.display = "block";
       } else {
         errorRecipes.style.display = "none";
-        dropdownIngredients.style.display = "block";
-        errorIngredients.style.display = "none";
-        dropdownAppliances.style.display = "block";
-        errorAppliances.style.display = "none";
-        dropdownUstensils.style.display = "block";
-        errorUstensils.style.display = "none";
       }
     });
   });
 }
-
 function removeDuplicatesTags() {
   const getTags = [...document.querySelectorAll(".badge")];
   const contentTag = new Set(getTags.map((x) => x.innerHTML));
@@ -364,7 +355,6 @@ function createTag(e) {
   tagSection.appendChild(badgeIngredient);
   arrayTag.push(badgeIngredient);
 }
-
 function filterListing() {
   listing.filter((list) => {
     list.style.display = "none";
