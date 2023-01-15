@@ -1,13 +1,4 @@
-import {
-  searchBar,
-  errorRecipes,
-  dropdownAppliances,
-  dropdownIngredients,
-  dropdownUstensils,
-  errorAppliances,
-  errorIngredients,
-  errorUstensils,
-} from "./DOM.js";
+import { searchBar, errorRecipes } from "./DOM.js";
 import { arrayRecipes, listing } from "./dropdowns.js";
 export let cards = document.getElementsByClassName("cards");
 
