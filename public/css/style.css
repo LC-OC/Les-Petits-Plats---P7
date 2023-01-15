@@ -155,8 +155,11 @@ form #search-content {
 #recipes-section {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   width: 95%;
+  justify-content: space-between;
+}
+#recipes-section #error_recipes_search {
+  display: none;
 }
 #recipes-section .card {
   width: 380px;
