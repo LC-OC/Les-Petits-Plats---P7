@@ -219,12 +219,13 @@ function tagRemove() {
       });
       tagDelete = arrayTag;
       filterRemoveTag(tag);
-      if (arrayTag.length === 0 && searchBar.value.length === 0) {
-        arrayTag = [];
-        arrayTextTag = [];
-        searchBar.disabled = false;
-      }
+
       arrayRecipes.filter((recipe) => {
+        if (arrayTag.length === 0 && searchBar.value.length === 0) {
+          arrayTag = [];
+          arrayTextTag = [];
+          searchBar.disabled = false;
+        }
         if (
           arrayTag.length === 0 &&
           recipe.textContent.toLowerCase().includes(searchBar.value)
@@ -233,22 +234,24 @@ function tagRemove() {
           searchBar.disabled = false;
         }
       });
-      listing.filter((list) => {
-        list.style.display = "none";
-        arrayRecipes.filter((recipe) => {
-          if (
-            arrayTag.length === 0 &&
-            recipe.textContent
-              .toLowerCase()
-              .includes(searchBar.value.toLowerCase()) &&
-            recipe.textContent
-              .toLowerCase()
-              .includes(list.textContent.toLowerCase())
-          ) {
-            list.style.display = "block";
-          }
+      if (arrayTag.length === 0 && arrayTextTag.length === 0) {
+        listing.filter((list) => {
+          list.style.display = "none";
+          arrayRecipes.filter((recipe) => {
+            if (
+              recipe.textContent
+                .toLowerCase()
+                .includes(searchBar.value.toLowerCase()) &&
+              recipe.textContent
+                .toLowerCase()
+                .includes(list.textContent.toLowerCase())
+            ) {
+              list.style.display = "block";
+            }
+          });
         });
-      });
+      }
+      /**/
     });
   });
 }
