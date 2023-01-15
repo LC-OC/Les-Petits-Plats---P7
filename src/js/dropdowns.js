@@ -20,7 +20,7 @@ export let arrayRecipes = [];
 for (let recipes of recipesContainer) {
   arrayRecipes.push(recipes);
 }
-import { listingInput, searchPrincipal } from "./searchBar.js";
+import { searchPrincipal } from "./searchBar.js";
 
 // array
 let arrayIngredients = [];
@@ -158,6 +158,9 @@ searchBarUstensils.addEventListener("keyup", (e) => {
 arrayListingIngredients.filter((listIngredient) => {
   listing.push(listIngredient);
   listIngredient.addEventListener("click", function (e) {
+    searchBarAppliances.value = "";
+    searchBarIngredients.value = "";
+    searchBarUstensils.value = "";
     let ingredient = e.target.textContent;
     let badgeIngredient = document.createElement("span");
     badgeIngredient.innerHTML = ingredient;
@@ -179,6 +182,9 @@ arrayListingIngredients.filter((listIngredient) => {
 arrayListingAppliances.filter((listAppliance) => {
   listing.push(listAppliance);
   listAppliance.addEventListener("click", function (e) {
+    searchBarAppliances.value = "";
+    searchBarIngredients.value = "";
+    searchBarUstensils.value = "";
     let appliance = e.target.textContent;
     let badgeAppliance = document.createElement("span");
     badgeAppliance.innerHTML = appliance;
@@ -200,6 +206,9 @@ arrayListingAppliances.filter((listAppliance) => {
 arrayListingUstensils.filter((listUstensil) => {
   listing.push(listUstensil);
   listUstensil.addEventListener("click", function (e) {
+    searchBarAppliances.value = "";
+    searchBarIngredients.value = "";
+    searchBarUstensils.value = "";
     let ustensil = e.target.textContent;
     let badgeUstensil = document.createElement("span");
     badgeUstensil.innerHTML = ustensil;
@@ -224,6 +233,9 @@ let tagDelete = [];
 function tagRemove() {
   arrayTag.filter((tag) => {
     tag.addEventListener("click", function () {
+      searchBarAppliances.value = "";
+      searchBarIngredients.value = "";
+      searchBarUstensils.value = "";
       tag.remove();
       arrayTag = arrayTag.filter(function (tags) {
         return tags.textContent !== tag.textContent;
