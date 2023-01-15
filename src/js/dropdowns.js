@@ -158,7 +158,18 @@ searchBarUstensils.addEventListener("keyup", (e) => {
 arrayListingIngredients.filter((listIngredient) => {
   listing.push(listIngredient);
   listIngredient.addEventListener("click", function (e) {
-    createTag(e);
+    let ingredient = e.target.textContent;
+    let badgeIngredient = document.createElement("span");
+    badgeIngredient.innerHTML = ingredient;
+    badgeIngredient.classList.add("badge");
+    badgeIngredient.classList.add("tag-ingredient");
+    badgeIngredient.style.display = "inline-block";
+    let badgeCloseIcon = document.createElement("img");
+    badgeCloseIcon.src = "../src/assets/close-icon.png";
+    badgeCloseIcon.classList.add("close-icon");
+    badgeIngredient.appendChild(badgeCloseIcon);
+    tagSection.appendChild(badgeIngredient);
+    arrayTag.push(badgeIngredient);
     removeDuplicatesTags();
     searchTag();
     tagRemove();
@@ -251,7 +262,6 @@ function tagRemove() {
           });
         });
       }
-      /**/
     });
   });
 }
@@ -333,6 +343,7 @@ function searchTag(e) {
     });
   });
 }
+
 function removeDuplicatesTags() {
   const getTags = [...document.querySelectorAll(".badge")];
   const contentTag = new Set(getTags.map((x) => x.innerHTML));
@@ -344,20 +355,8 @@ function removeDuplicatesTags() {
     }
   });
 }
-function createTag(e) {
-  let ingredient = e.target.textContent;
-  let badgeIngredient = document.createElement("span");
-  badgeIngredient.innerHTML = ingredient;
-  badgeIngredient.classList.add("badge");
-  badgeIngredient.classList.add("tag-ingredient");
-  badgeIngredient.style.display = "inline-block";
-  let badgeCloseIcon = document.createElement("img");
-  badgeCloseIcon.src = "../src/assets/close-icon.png";
-  badgeCloseIcon.classList.add("close-icon");
-  badgeIngredient.appendChild(badgeCloseIcon);
-  tagSection.appendChild(badgeIngredient);
-  arrayTag.push(badgeIngredient);
-}
+
+// Filter containts listing on search
 function filterListing() {
   listing.filter((list) => {
     list.style.display = "none";
