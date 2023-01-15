@@ -1,22 +1,10 @@
-import {
-  searchBar,
-  recipesContainer,
-  errorRecipes,
-  dropdownAppliances,
-  dropdownIngredients,
-  dropdownUstensils,
-  errorAppliances,
-  errorIngredients,
-  errorUstensils,
-} from "./DOM.js";
+import { searchBar, errorRecipes } from "./DOM.js";
 import { arrayRecipes, listing } from "./dropdowns.js";
-import { recipesSection } from "./index.js";
 export let cards = document.getElementsByClassName("cards");
 
 searchBar.addEventListener("keyup", () => {
   searchPrincipal();
   listingInput();
-  //loop method
 });
 
 export function searchPrincipal() {
@@ -40,35 +28,6 @@ export function searchPrincipal() {
       errorRecipes.style.display = "none";
     }
   }
-  /* array method
-  arrayRecipes.filter((recipes) => {
-    if (
-      searchValueLength >= 3 &&
-      !recipes.textContent.toLowerCase().includes(searchValue)
-    ) {
-      recipes.style.display = "none";
-    } else {
-      recipes.style.display = "block";
-      matchFound = true;
-    }
-    if (!matchFound) {
-      errorRecipes.style.display = "block";
-      dropdownIngredients.style.display = "none";
-      errorIngredients.style.display = "block";
-      dropdownAppliances.style.display = "none";
-      errorAppliances.style.display = "block";
-      dropdownUstensils.style.display = "none";
-      errorUstensils.style.display = "block";
-    } else {
-      errorRecipes.style.display = "none";
-      dropdownIngredients.style.display = "block";
-      dropdownAppliances.style.display = "block";
-      errorAppliances.style.display = "none";
-      dropdownUstensils.style.display = "block";
-      errorUstensils.style.display = "none";
-      errorIngredients.style.display = "none";
-    }
-  });*/
 }
 
 export function listingInput() {

@@ -20,7 +20,7 @@ export let arrayRecipes = [];
 for (let recipes of recipesContainer) {
   arrayRecipes.push(recipes);
 }
-import { listingInput, searchPrincipal } from "./searchBar.js";
+import { searchPrincipal } from "./searchBar.js";
 
 // array
 let arrayIngredients = [];
@@ -32,10 +32,6 @@ let arrayListingUstensils = [];
 let arrayTag = [];
 let arrayTextTag = [];
 export let listing = [];
-
-let ingredientsInRecipes = document.getElementsByClassName("ingredient_bold");
-console.log(ingredientsInRecipes.innerHTML);
-let listIngredients = document.getElementsByClassName("ingredient");
 
 // récupération des éléments des listings
 recipes.map((recipe) => {
@@ -162,7 +158,18 @@ searchBarUstensils.addEventListener("keyup", (e) => {
 arrayListingIngredients.filter((listIngredient) => {
   listing.push(listIngredient);
   listIngredient.addEventListener("click", function (e) {
-    createTag(e);
+    let ingredient = e.target.textContent;
+    let badgeIngredient = document.createElement("span");
+    badgeIngredient.innerHTML = ingredient;
+    badgeIngredient.classList.add("badge");
+    badgeIngredient.classList.add("tag-ingredient");
+    badgeIngredient.style.display = "inline-block";
+    let badgeCloseIcon = document.createElement("img");
+    badgeCloseIcon.src = "../src/assets/close-icon.png";
+    badgeCloseIcon.classList.add("close-icon");
+    badgeIngredient.appendChild(badgeCloseIcon);
+    tagSection.appendChild(badgeIngredient);
+    arrayTag.push(badgeIngredient);
     removeDuplicatesTags();
     searchTag();
     tagRemove();
@@ -223,25 +230,38 @@ function tagRemove() {
       });
       tagDelete = arrayTag;
       filterRemoveTag(tag);
+
       arrayRecipes.filter((recipe) => {
         if (arrayTag.length === 0 && searchBar.value.length === 0) {
           arrayTag = [];
           arrayTextTag = [];
           searchBar.disabled = false;
-          listing.filter((list) => {
-            list.style.display = "block";
-          });
         }
         if (
           arrayTag.length === 0 &&
-          recipe.textContent
-            .toLowerCase()
-            .includes(searchBar.value.toLowerCase())
+          recipe.textContent.toLowerCase().includes(searchBar.value)
         ) {
           searchPrincipal();
           searchBar.disabled = false;
         }
       });
+      if (arrayTag.length === 0 && arrayTextTag.length === 0) {
+        listing.filter((list) => {
+          list.style.display = "none";
+          arrayRecipes.filter((recipe) => {
+            if (
+              recipe.textContent
+                .toLowerCase()
+                .includes(searchBar.value.toLowerCase()) &&
+              recipe.textContent
+                .toLowerCase()
+                .includes(list.textContent.toLowerCase())
+            ) {
+              list.style.display = "block";
+            }
+          });
+        });
+      }
     });
   });
 }
@@ -264,28 +284,24 @@ function filterRemoveTag(tag) {
       matchFound = true;
     }
     listing.filter((list) => {
-      arrayTag.filter((tag) => {
-        let foundTagListing = arrayTag.every(
-          (item) =>
-            recipe.textContent
-              .toLowerCase()
-              .includes(item.textContent.toLowerCase()) &&
-            recipe.textContent
-              .toLowerCase()
-              .includes(list.textContent.toLowerCase()) &&
-            recipe.textContent.toLowerCase().includes(searchBar.value)
-        );
-        if (foundTagListing == true) {
-          list.style.display = "block";
-        }
-        if (arrayTag.length === 0 && searchBar.value.length > 3) {
-          listingInput();
-        }
-      });
+      let foundTagListing = arrayTag.every(
+        (item) =>
+          recipe.textContent
+            .toLowerCase()
+            .includes(item.textContent.toLowerCase()) &&
+          recipe.textContent
+            .toLowerCase()
+            .includes(list.textContent.toLowerCase()) &&
+          recipe.textContent.toLowerCase().includes(searchBar.value)
+      );
+      if (foundTagListing == true) {
+        list.style.display = "block";
+      }
     });
     if (foundTag == true && searchBar.value.length === 0) {
       searchBar.disabled = true;
     }
+
     if (!matchFound) {
       errorRecipes.style.display = "block";
     } else {
@@ -303,7 +319,9 @@ function searchTag(e) {
       let foundTag = arrayTextTag.every(
         (item) =>
           recipe.textContent.toLowerCase().includes(item) &&
-          recipe.textContent.toLowerCase().includes(searchBar.value)
+          recipe.textContent
+            .toLowerCase()
+            .includes(searchBar.value.toLowerCase())
       );
       if (foundTag == true) {
         recipe.style.display = "block";
@@ -317,23 +335,10 @@ function searchTag(e) {
       if (arrayTag.length > 0 && searchBar.value.length > 0) {
         searchBar.disabled = true;
       }
-
       if (!matchFound) {
         errorRecipes.style.display = "block";
-        dropdownIngredients.style.display = "none";
-        errorIngredients.style.display = "block";
-        dropdownAppliances.style.display = "none";
-        errorAppliances.style.display = "block";
-        dropdownUstensils.style.display = "none";
-        errorUstensils.style.display = "block";
       } else {
         errorRecipes.style.display = "none";
-        dropdownIngredients.style.display = "block";
-        errorIngredients.style.display = "none";
-        dropdownAppliances.style.display = "block";
-        errorAppliances.style.display = "none";
-        dropdownUstensils.style.display = "block";
-        errorUstensils.style.display = "none";
       }
     });
   });
@@ -350,21 +355,8 @@ function removeDuplicatesTags() {
     }
   });
 }
-function createTag(e) {
-  let ingredient = e.target.textContent;
-  let badgeIngredient = document.createElement("span");
-  badgeIngredient.innerHTML = ingredient;
-  badgeIngredient.classList.add("badge");
-  badgeIngredient.classList.add("tag-ingredient");
-  badgeIngredient.style.display = "inline-block";
-  let badgeCloseIcon = document.createElement("img");
-  badgeCloseIcon.src = "../src/assets/close-icon.png";
-  badgeCloseIcon.classList.add("close-icon");
-  badgeIngredient.appendChild(badgeCloseIcon);
-  tagSection.appendChild(badgeIngredient);
-  arrayTag.push(badgeIngredient);
-}
 
+// Filter containts listing on search
 function filterListing() {
   listing.filter((list) => {
     list.style.display = "none";
