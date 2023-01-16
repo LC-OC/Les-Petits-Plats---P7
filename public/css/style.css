@@ -131,10 +131,11 @@ body {
   margin-left: 1rem;
 }
 
+/*
 .dropdown-toggle::after {
-  display: none;
-}
-
+    display: none;
+  }
+  */
 form {
   margin: 0 2.3rem;
 }
