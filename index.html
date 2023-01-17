@@ -34,12 +34,15 @@
         <div id="dropdown-section" class=" mb-3 gap-3 ms-5 mt-3">
             <div class="dropdown" id="dropdown-ingredients">
              <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Ingrédients
+                Ingrédients <img src="src/assets/close-arrow.svg" class="arrow"/>
               </button>
               <div class="dropdown-menu dropdown-ingredients">
+                <div class="search-section-dropdown"> 
                   <form class="form-inline">
                     <input class="form-control mr-sm-2" id="searchbar_ingredients" type="search" placeholder="Rechercher un ingrédient" aria-label="Search" autocomplete="off">
                   </form>
+                  <img src="src/assets/open-arrow.svg" class="arrow-dropdown-ingredient"/>
+                </div>
                   <p id="error_ingredient">Aucun ingrédient ne correspond à votre recherche.</p>
                 <ul class="dropdown-list ingredients-list" id="ingredients-list">
                 </ul>
@@ -47,12 +50,15 @@
             </div>
             <div class="dropdown" id="dropdown-appliances">
                 <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                   Appareils
+                   Appareils <img src="src/assets/close-arrow.svg" class="arrow"/>
                  </button>
                  <div class="dropdown-menu dropdown-appliances">
+                  <div class="search-section-dropdown"> 
                     <form class="form-inline">
                       <input class="form-control mr-sm-2" id="searchbar_appliances" type="search" placeholder="Rechercher un appareil" aria-label="Search" autocomplete="off">
                     </form>
+                    <img src="src/assets/open-arrow.svg" class="arrow-dropdown-appliance"/>
+                  </div>
                     <p id="error_appliances">Aucun appareil ne correspond à votre recherche.</p>
                     <ul class="dropdown-list appliances-list">
                     </ul>
@@ -60,18 +66,22 @@
              </div>
              <div class="dropdown" id="dropdown-ustensils">
                 <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                   Ustensiles
+                   Ustensiles <img src="src/assets/close-arrow.svg" class="arrow"/>
                  </button>
                  <div class="dropdown-menu dropdown-ustensils">
+                  <div class="search-section-dropdown"> 
                   <form class="form-inline">
                     <input class="form-control mr-sm-2" id="searchbar_ustensils" type="search" placeholder="Rechercher un ustensil" aria-label="Search" autocomplete="off">
                   </form>
+                  <img src="src/assets/open-arrow.svg" class="arrow-dropdown-ustensil"/>
+                </div>
                   <p id="error_ustensils">Aucun ustensile ne correspond à votre recherche.</p>
                   <ul class="dropdown-list ustensils-list">
                   </ul>
                 </div>
              </div>
         </div>
+        
         <!--Cards recettes-->
         <div id="recipes-section" class="container-fluid ">
           <p id="error_recipes_search">

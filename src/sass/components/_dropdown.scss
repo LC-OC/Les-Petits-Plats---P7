@@ -45,6 +45,7 @@
             background-color: $appliances-color;
         }
     }
+    
     .dropdown-ingredients  {
         background-color: $ingredients-color;
         color: white; 
@@ -94,6 +95,17 @@
             margin-bottom: 0.5rem;
         }
     }
+    .search-section-dropdown {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        padding-right: 2rem;
+    }
+
+    .form-control {
+        width: 105%;
+    }
     ::placeholder {
         font-size: 18px;
         color: #FFFFFF;
@@ -125,5 +137,25 @@
         text-transform: none;
         margin-left: 1rem;
     }
+    .arrow {
+        margin-left: 1rem;
+    }
 }
 
+.dropdown-toggle::after {
+    content: none;
+}
+
+.dropdown-animation {
+    margin-top: -4.4rem;
+}
+
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none;
+ }
+
+ .form-control:focus, .form-control:active {
+    outline: none !important;
+    box-shadow: none;
+ }

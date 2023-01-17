@@ -1,5 +1,4 @@
 import { recipes } from "../data/recipes.js";
-import { displayRecipes, recipesSection } from "./index.js";
 import {
   dropdownIngredients,
   dropdownAppliances,
@@ -14,6 +13,15 @@ import {
   tagSection,
   recipesContainer,
   searchBar,
+  ingredientBtn,
+  ustensilBtn,
+  applianceBtn,
+  ingredientList,
+  applianceList,
+  ustensilList,
+  arrowDropdownAppliances,
+  arrowDropdownIngredients,
+  arrowDropdownUstensils,
 } from "./DOM.js";
 
 export let arrayRecipes = [];
@@ -181,6 +189,9 @@ arrayListingIngredients.filter((listIngredient) => {
     searchTag();
     tagRemove();
     filterListing();
+    hideDropdownUstensil();
+    hideDropdownAppliance();
+    hideDropdown();
   });
 });
 arrayListingAppliances.filter((listAppliance) => {
@@ -205,6 +216,9 @@ arrayListingAppliances.filter((listAppliance) => {
     searchTag();
     tagRemove();
     filterListing();
+    hideDropdownUstensil();
+    hideDropdownAppliance();
+    hideDropdown();
   });
 });
 arrayListingUstensils.filter((listUstensil) => {
@@ -229,6 +243,9 @@ arrayListingUstensils.filter((listUstensil) => {
     searchTag();
     tagRemove();
     filterListing();
+    hideDropdownUstensil();
+    hideDropdownAppliance();
+    hideDropdown();
   });
 });
 
@@ -395,3 +412,104 @@ function filterListing() {
     });
   });
 }
+
+//Animation dropdown
+
+ingredientBtn.addEventListener("click", () => {
+  hideDropdownUstensil();
+  hideDropdownAppliance();
+  ingredientList.classList.toggle("show");
+  if (ingredientList.classList.contains("show")) {
+    ingredientBtn.style.width = "40rem";
+    ingredientList.classList.add("dropdown-animation");
+    ingredientBtn.disabled = true;
+    if (window.matchMedia("(max-width: 736px)").matches) {
+      ingredientBtn.style.width = "20rem";
+    }
+  } else {
+    ingredientList.classList.remove("show");
+  }
+});
+
+function hideDropdown() {
+  ingredientBtn.disabled = false;
+  ingredientList.classList.remove("dropdown-animation");
+  ingredientList.classList.remove("show");
+  ingredientBtn.style.width = "170px";
+}
+
+ingredientList.addEventListener("focusOut", () => {
+  hideDropdown();
+  hideDropdownAppliance();
+  hideDropdownUstensil();
+});
+
+applianceBtn.addEventListener("click", () => {
+  hideDropdownUstensil();
+  hideDropdown();
+  applianceList.classList.toggle("show");
+  if (applianceList.classList.contains("show")) {
+    applianceBtn.style.width = "40rem";
+    applianceList.classList.add("dropdown-animation");
+    applianceBtn.disabled = true;
+    if (window.matchMedia("(max-width: 736px)").matches) {
+      applianceBtn.style.width = "20rem";
+    }
+  } else {
+    applianceList.classList.remove("show");
+  }
+});
+function hideDropdownAppliance() {
+  applianceBtn.disabled = false;
+  applianceList.classList.remove("dropdown-animation");
+  applianceList.classList.remove("show");
+  applianceBtn.style.width = "170px";
+}
+applianceList.addEventListener("focusOut", () => {
+  hideDropdownAppliance();
+  hideDropdown();
+  hideDropdownUstensil();
+});
+
+ustensilBtn.addEventListener("click", () => {
+  hideDropdownAppliance();
+  hideDropdown();
+  ustensilList.classList.toggle("show");
+  if (ustensilList.classList.contains("show")) {
+    ustensilBtn.style.width = "40rem";
+    ustensilList.classList.add("dropdown-animation");
+    ustensilBtn.disabled = true;
+    if (window.matchMedia("(max-width: 736px)").matches) {
+      ustensilBtn.style.width = "20rem";
+    }
+  } else {
+    ustensilList.classList.remove("show");
+  }
+});
+function hideDropdownUstensil() {
+  ustensilBtn.disabled = false;
+  ustensilList.classList.remove("dropdown-animationt");
+  ustensilList.classList.remove("show");
+  ustensilBtn.style.width = "170px";
+}
+ustensilList.addEventListener("focusOut", () => {
+  hideDropdownUstensil();
+  hideDropdownAppliance();
+  hideDropdown();
+});
+
+arrowDropdownIngredients.addEventListener("click", () => {
+  hideDropdownUstensil();
+  hideDropdownAppliance();
+  hideDropdown();
+});
+arrowDropdownAppliances.addEventListener("click", () => {
+  hideDropdownUstensil();
+  hideDropdownAppliance();
+  hideDropdown();
+});
+arrowDropdownUstensils.addEventListener("click", () => {
+  hideDropdownUstensil();
+  hideDropdownAppliance();
+  hideDropdown();
+});

@@ -112,6 +112,16 @@ body {
 #dropdown-section .dropdown-list li {
   margin-bottom: 0.5rem;
 }
+#dropdown-section .search-section-dropdown {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding-right: 2rem;
+}
+#dropdown-section .form-control {
+  width: 105%;
+}
 #dropdown-section ::placeholder {
   font-size: 18px;
   color: #FFFFFF;
@@ -140,6 +150,27 @@ body {
   padding: 1rem;
   text-transform: none;
   margin-left: 1rem;
+}
+#dropdown-section .arrow {
+  margin-left: 1rem;
+}
+
+.dropdown-toggle::after {
+  content: none;
+}
+
+.dropdown-animation {
+  margin-top: -4.4rem;
+}
+
+.btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.form-control:focus, .form-control:active {
+  outline: none !important;
+  box-shadow: none;
 }
 
 form {
