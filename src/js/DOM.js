@@ -16,3 +16,18 @@ export const errorAppliances = document.getElementById("error_appliances");
 export const errorUstensils = document.getElementById("error_ustensils");
 export let errorRecipes = document.getElementById("error_recipes_search");
 export let tagSection = document.querySelector("#tag-section");
+export const ingredientBtn = document.querySelector(".btn-primary");
+export const applianceBtn = document.querySelector(".btn-success");
+export const ustensilBtn = document.querySelector(".btn-danger");
+export const ingredientList = document.querySelector(".dropdown-ingredients");
+export const applianceList = document.querySelector(".dropdown-appliances");
+export const ustensilList = document.querySelector(".dropdown-ustensils");
+export const arrowDropdownIngredients = document.querySelector(
+  ".arrow-dropdown-ingredient"
+);
+export const arrowDropdownAppliances = document.querySelector(
+  ".arrow-dropdown-appliance"
+);
+export const arrowDropdownUstensils = document.querySelector(
+  ".arrow-dropdown-ustensil"
+);
