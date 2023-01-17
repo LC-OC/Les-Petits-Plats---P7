@@ -46,6 +46,10 @@ recipes.map((recipe) => {
   });
 });
 
+arrayIngredients = arrayIngredients.map((a) => a.toLowerCase());
+arrayAppliances = arrayAppliances.map((a) => a.toLowerCase());
+arrayUstensils = arrayUstensils.map((a) => a.toLowerCase());
+
 // maj first letter
 arrayIngredients = arrayIngredients.map(
   (a) => a.charAt(0).toUpperCase() + a.substr(1)
