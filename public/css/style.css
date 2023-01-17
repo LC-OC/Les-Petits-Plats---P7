@@ -182,7 +182,7 @@ form #search-content {
 }
 #recipes-section .card {
   width: 380px;
-  height: 364px;
+  height: 398px;
   background: #E7E7E7;
   border-radius: 5px;
   margin-bottom: 3rem;
@@ -233,8 +233,6 @@ form #search-content {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 6rem;
-  overflow: hidden;
 }
 #recipes-section .card .card-body .style_description_ingredients .ingredients_recipes {
   font-size: 12px;
@@ -245,9 +243,13 @@ form #search-content {
   font-weight: 700;
 }
 #recipes-section .card .card-body .style_description_ingredients .description_style {
-  font-size: 12px;
   width: 60%;
-  text-align: justify;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #tag-section {
