@@ -1,7 +1,3 @@
-*:focus {
-  box-shadow: none !important;
-}
-
 body {
   font-family: "Lato", sans-serif;
 }
@@ -16,6 +12,15 @@ body {
   width: 268px;
 }
 
+#dropdown-section {
+  display: flex;
+  flex-direction: row;
+}
+@media screen and (max-width: 736px) {
+  #dropdown-section {
+    flex-direction: column;
+  }
+}
 #dropdown-section .btn-danger {
   background-color: #ED6454;
   width: 170px;
@@ -98,6 +103,12 @@ body {
   column-count: 3;
   list-style-type: none;
 }
+@media screen and (max-width: 736px) {
+  #dropdown-section .dropdown-list {
+    width: 20rem;
+    column-count: 2;
+  }
+}
 #dropdown-section .dropdown-list li {
   margin-bottom: 0.5rem;
 }
@@ -131,10 +142,6 @@ body {
   margin-left: 1rem;
 }
 
-.dropdown-toggle::after {
-  display: none;
-}
-
 form {
   margin: 0 2.3rem;
 }
@@ -156,7 +163,19 @@ form #search-content {
   display: flex;
   flex-wrap: wrap;
   width: 95%;
-  justify-content: space-between;
+  column-gap: 135px;
+}
+@media screen and (max-width: 736px) {
+  #recipes-section {
+    column-gap: 0;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  #recipes-section {
+    column-gap: 10px;
+  }
 }
 #recipes-section #error_recipes_search {
   display: none;
@@ -167,6 +186,17 @@ form #search-content {
   background: #E7E7E7;
   border-radius: 5px;
   margin-bottom: 3rem;
+}
+@media screen and (max-width: 736px) {
+  #recipes-section .card {
+    width: 100%;
+    height: 364px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  #recipes-section .card {
+    width: 230px;
+  }
 }
 #recipes-section .card .card-img-top {
   height: 45%;
@@ -193,6 +223,11 @@ form #search-content {
 #recipes-section .card .card-body .style_title_time .time_recipes {
   font-size: 18px;
   font-weight: 700;
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  #recipes-section .card .card-body .style_title_time .time_recipes {
+    font-size: 13px;
+  }
 }
 #recipes-section .card .card-body .style_description_ingredients {
   display: flex;
