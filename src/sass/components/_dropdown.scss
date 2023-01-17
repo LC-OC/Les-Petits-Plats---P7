@@ -1,4 +1,9 @@
 #dropdown-section {
+    display: flex;
+    flex-direction: row;
+    @media #{$mobile} {
+        flex-direction: column;
+    }
     .btn-danger {
     background-color: $ustensils-color;
     width: 170px;
@@ -81,6 +86,10 @@
         font-size: 18px;
         column-count: 3;
         list-style-type: none;
+        @media #{$mobile} {
+            width: 20rem;
+            column-count: 2;
+        }
         li {
             margin-bottom: 0.5rem;
         }
@@ -117,9 +126,3 @@
         margin-left: 1rem;
     }
 }
-
-/*
-.dropdown-toggle::after {
-    display: none;
-  }
-  */
